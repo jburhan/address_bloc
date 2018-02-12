@@ -59,7 +59,6 @@ RSpec.describe AddressBook do
     it "imports the 1st entry" do
       book.import_from_csv("entries.csv")
       entry_one = book.entries[0]
-
       check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
     end
 
@@ -169,5 +168,40 @@ RSpec.describe AddressBook do
 
   end
 
+    describe "#iterative_search" do
+      it "searches AddressBook for Daniel using iterative search" do
+        book.import_from_csv("entries_2.csv")
+        entry = book.iterative_search("Daniel")
+        expect(entry).to be_nil
+      end
+
+      it "searches AddressBook for Jimmy using iterative search" do
+        book.import_from_csv("entries_2.csv")
+        entry = book.iterative_search("Jimmy")
+        expect(entry).to be_a Entry
+        check_entry(entry, "Jimmy", "394-232-3432", "jimmy@blocmail.com")
+      end
+
+      it "searches AddressBook for Jason using iterative search" do
+        book.import_from_csv("entries_2.csv")
+        entry = book.iterative_search("Jason")
+        expect(entry).to be_a Entry
+        check_entry(entry, "Jason", "234-342-3434", "jason@blocmail.com")
+      end
+
+       it "searches AddressBook for Susan using iterative search" do
+         book.import_from_csv("entries_2.csv")
+         entry = book.iterative_search("Susan")
+         expect(entry).to be_a Entry
+         check_entry(entry, "Susan", "233-342-3244" ,"susan@blocmail.com")
+       end
+
+       it "searches AddressBook for Michael using iterative search" do
+         book.import_from_csv("entries_2.csv")
+         entry = book.iterative_search("Michael")
+         expect(entry).to be_nil
+      end
+
+    end
 
 end
