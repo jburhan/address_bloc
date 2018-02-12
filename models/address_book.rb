@@ -39,4 +39,21 @@ class AddressBook
     end
   end
 
+  def binary_search(name)
+    lower = 0
+    upper = entries.length - 1
+    while lower <= upper
+      mid = (lower + upper)/2 #ruby truncate decimals
+      mid_name = entries[mid].name
+      if name == mid_name
+        return entries[mid]
+      elsif name < mid_name #if name is alphabeticaly before mid_name
+        upper = mid - 1 #set upper because name must be in the lower half
+      elsif name > mid_name
+        lower = mid + 1
+      end
+    end
+    return nil #if we cant find the entry
+  end
+
 end
