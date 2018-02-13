@@ -1,4 +1,4 @@
-name,phone_number,email
+name,phone_number,email #give context to ruby
 Jimmy,394-232-3432,jimmy@blocmail.com
 Jason,234-342-3434,jason@blocmail.com
 Susan,233-342-3244,susan@blocmail.com
