@@ -194,6 +194,7 @@ class MenuController
       puts "n - next entry"
       puts "d - delete entry"
       puts "e - edit this entry"
+      puts "t - terminate all entries"
       puts "m - return to main menu"
 
       selection = gets.chomp #chomp removes trailing whitespace from the string
@@ -206,6 +207,9 @@ class MenuController
         when "e"
           edit_entry(entry)
           entry_submenu(entry)
+        when "t"
+          terminate_entries
+          main_menu
         when "m"
           system "clear"
           main_menu
@@ -213,6 +217,26 @@ class MenuController
           system "clear"
           puts "#{selection} is not a valid input"
           entry_submenu(entry)
+      end
+
+    end
+
+    def terminate_entries
+      puts "Are you sure you want to delete all entries?"
+      puts "type y to proceed or n to return"
+
+      option = gets.chomp
+
+      if option == y
+        address_book.entries.clear
+        if address_book.entries.empty?
+          puts "TERMINATED"
+        end
+      elsif option == n
+        entry_submenu(entry)
+      else
+        puts "#{option} is not a valid input"
+        terminate_entries
       end
 
     end
